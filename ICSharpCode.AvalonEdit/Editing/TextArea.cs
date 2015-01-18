@@ -405,8 +405,8 @@ namespace ICSharpCode.AvalonEdit.Editing
 					throw new ArgumentNullException("value");
 				if (value.textArea != this)
 					throw new ArgumentException("Cannot use a Selection instance that belongs to another text area.");
-				if (!object.Equals(selection, value)) {
-//					Debug.WriteLine("Selection change from " + selection + " to " + value);
+				if (!object.Equals(selection, value) || selection.IsEmpty) {
+					System.Diagnostics.Debug.Print("Selection change from " + selection + " to " + value);
 					if (textView != null) {
 						ISegment oldSegment = selection.SurroundingSegment;
 						ISegment newSegment = value.SurroundingSegment;
